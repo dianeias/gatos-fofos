@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<title>gatos fofos</title>
+
+<link rel="icon" type="image/png" href="/images/tab.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sacramento&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+#splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+  cursor:pointer;
+}
+
+#splash img{
+  max-width:80%;
+  max-height:80%;
+  background:none;
+  border:none;
+  box-shadow:none;
+}
+
+/* 🐠 AQUÁRIO NO CANTO INFERIOR ESQUERDO */
+#aquario {
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  width: 300px;
+  height: 200px;
+  border: 3px solid #d4b8c7;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(200, 150, 170, 0.3);
+  z-index: 100;
+  background: url('https://file.garden/aURHkyTTlizpVnca/pinkfishtank.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#aquario::before {
+  content: '✧ AQUÁRIO PINK ✧';
+  position: absolute;
+  top: -25px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font: bold 12px "Comic Sans MS", cursive;
+  color: #e6c2d1;
+  text-shadow: 1px 1px 2px #000;
+}
+
+/* PEIXES - POSICIONAMENTO ABSOLUTO */
+.fish {
+  position: absolute;
+  width: 40px;
+  height: auto;
+  cursor: move;
+  user-select: none;
+  z-index: 2;
+  transition: transform 0.1s;
+}
+
+.fish:hover {
+  transform: scale(1.05);
+  z-index: 3;
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash">
+  <img src="/images/opening.gif" alt="Opening">
+</div>
+
+<div class="stage">
+
+<div class="lace-divider"></div>
+
+<img src="/images/holy.png" class="holy-float">
+<img src="/images/cruz.png" class="cruz-float">
+
+<div class="cristo-ad">
+<a href="https://crucifix.io/" target="_blank">
+aceite CRISTO<br>
+e ganhe um PS2 de graça!!1!<br>
+<span class="clique">clique AQUI!</span>
+</a>
+</div>
+
+<div class="content">
+
+<aside class="duende">
+<img src="/images/IMG_1310.jpeg" alt="gato fofo">
+<p class="caption">
+<a href="https://youtu.be/xPghfRHZUFs?si=6SP27BqDte0dxhTW" target="_blank">
+duende real capturado em video
+</a>
+</p>
+</aside>
+
+<a href="/collector/" class="win98-btn">tarot virtual</a>
+
+<aside class="vela">
+<img src="https://file.garden/aURHkyTTlizpVnca/vela.gif" alt="vela">
+</aside>
+
+<img src="/images/cross.gif" alt="cross" class="corner-cross">
+
+</div>
+</div>
+
+<!-- 🎧 PLAYER (único e correto) -->
+<div id="altar-player" class="altar-player hidden">
+
+<button id="prev">↻</button>
+<button id="play">▷</button>
+<button id="next">↺</button>
+
+<div class="track-wrap">
+<span id="track-title">carregando...</span>
+<span id="time">
+<span id="current">0:00</span> /
+<span id="duration">0:00</span>
+</span>
+</div>
+
+<audio id="audio"></audio>
+
+</div>
+
+<!-- 🐟 AQUÁRIO COM PEIXES MÓVEIS -->
+<div id="aquario">
+  <!-- PEIXES (sem posição inicial - definida pelo JS) -->
+  <img src="https://file.garden/aURHkyTTlizpVnca/pink%20goldfish.jpg" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/spider.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/borgar.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/louvadeus.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/dolphin.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/blufish.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/shrimp.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/fish.png" class="fish">
+  <img src="https://file.garden/aURHkyTTlizpVnca/jellyfish.png" class="fish">
+</div>
+
+<script src="cursor-trail.js"></script>
+<script src="music-player.js"></script>
+
+<!-- 🐠 SCRIPT DO AQUÁRIO - MOVIMENTO CONTÍNUO SEM PARAR -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Fechar splash
+  document.getElementById('splash').addEventListener('click', function() {
+    this.style.display = 'none';
+  });
+
+  const aquario = document.getElementById("aquario");
+  const fishes = aquario.querySelectorAll(".fish");
+
+  // Inicialização
+  fishes.forEach((fish, index) => {
+    fish.dataset.direction = index < 4 ? "right" : "left";
+    fish.dataset.speed = "0.4";
+
+    fish.style.left = index < 4 ? "20px" : "240px";
+    fish.style.top = (Math.random() * 140 + 20) + "px";
+
+    fish.style.transform =
+      fish.dataset.direction === "right"
+        ? "scaleX(1)"
+        : "scaleX(-1)";
+  });
+
+  function moveFish() {
+    fishes.forEach(fish => {
+      let left = parseFloat(fish.style.left);
+      const speed = parseFloat(fish.dataset.speed);
+
+      if (fish.dataset.direction === "right") {
+        left += speed;
+      } else {
+        left -= speed;
+      }
+
+      // bordas
+      if (left <= 10) {
+        left = 10;
+        fish.dataset.direction = "right";
+        fish.style.transform = "scaleX(1)";
+      }
+
+      if (left >= 250) {
+        left = 250;
+        fish.dataset.direction = "left";
+        fish.style.transform = "scaleX(-1)";
+      }
+
+      fish.style.left = left + "px";
+    });
+
+    requestAnimationFrame(moveFish);
+  }
+
+  // inicia movimento automático IMEDIATO
+  moveFish();
+
+  // drag
+  let draggedFish = null;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  fishes.forEach(fish => {
+    fish.addEventListener("mousedown", e => {
+      draggedFish = fish;
+      offsetX = e.clientX - fish.getBoundingClientRect().left;
+      offsetY = e.clientY - fish.getBoundingClientRect().top;
+      fish.style.zIndex = 10;
+      e.preventDefault();
+    });
+  });
+
+  document.addEventListener("mousemove", e => {
+    if (!draggedFish) return;
+
+    const rect = aquario.getBoundingClientRect();
+    let x = e.clientX - rect.left - offsetX;
+    let y = e.clientY - rect.top - offsetY;
+
+    x = Math.max(0, Math.min(260, x));
+    y = Math.max(0, Math.min(170, y));
+
+    draggedFish.style.left = x + "px";
+    draggedFish.style.top = y + "px";
+  });
+
+  document.addEventListener("mouseup", () => {
+    if (draggedFish) {
+      draggedFish.style.zIndex = 2;
+      draggedFish = null;
+    }
+  });
+
+});
+</script>
+<img 
+  src="https://file.garden/aURHkyTTlizpVnca/bloomingflower.gif"
+  id="bloom-flower"
+  alt="flor animada">
+
+</body>
+</html>
