@@ -1,0 +1,482 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fbe8ef;
+  font-family: serif;
+  color: #5a3a46;
+  cursor: url("/images/cursor.png"), auto;
+}
+
+/* =========================
+   LACE DIVIDER
+========================= */
+.lace-divider {
+  width: 100%;
+  height: 48px;
+  background-image: url("/images/lace.png");
+  background-repeat: repeat-x;
+  background-position: top center;
+  background-size: auto 48px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header-top {
+  text-align: center;
+  padding: 30px 0 10px;
+}
+
+.title-gif {
+  width: 260px;
+}
+
+.subtitle {
+  font-style: italic;
+  font-size: 14px;
+  margin: 10px 0 20px;
+}
+
+
+
+.deer {
+  width: 60px;
+  margin-top: 5px;
+}
+
+/* =========================
+   TABS
+========================= */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tabs a {
+  background: #f7c1d9;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  color: #5a3a46;
+}
+
+.tabs a:hover {
+  background: #f3a9c9;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.left {
+  width: 45%;
+}
+
+/* =========================
+   DUENDE
+/* =========================
+   DUENDE
+========================= */
+/* =========================
+   DUENDE
+========================= */
+.duende {
+  position: absolute;
+  top: 330px;      /* MUDA AQUI */
+  left: 50px;     /* OU AQUI */
+  width: 150px;
+  z-index: 10;
+  text-align: center;
+  background: none;
+}
+
+.duende img {
+  width: 100%;
+  border: 1px solid #e6a7bf;
+  display: block;
+}
+
+.duende .caption {
+  margin-top: 6px; /* legenda abaixo da imagem */
+}
+
+.duende .caption a {
+  color: #e6a7bf;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.duende .caption a:hover {
+  color: #c26a8c;
+}
+
+/* =========================
+   FLOATING ELEMENTS
+========================= */
+.holy-float {
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  width: 60px;
+  z-index: 3;
+  transform: rotate(-6deg);
+}
+
+.cruz-float {
+  position: absolute;
+  top: 160px;
+  left: 10px;
+  width: 180px;
+  z-index: 2;
+  transform: rotate(12deg);
+}
+
+/* =========================
+   CORNER CROSS
+========================= */
+.corner-cross {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 99999;
+  animation: spin 12s linear infinite;
+}
+
+/* =========================
+   CRISTO AD
+========================= */
+.cristo-ad {
+  position: absolute;
+  top: 205px;
+  left: 40px;
+  z-index: 6;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.cristo-ad a {
+  color: #000;
+  text-decoration: underline;
+  font-family: serif;
+}
+
+.cristo-ad a:hover {
+  text-decoration: underline;
+}
+
+.cristo-ad .clique {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* =========================
+   
+
+.lukyanova {
+  position: absolute;
+  top: 320px;
+  left: 50px;
+  width: 150px;
+  z-index: 5;
+  text-align: center;
+}
+
+.lukyanova img {
+  width: 100%;
+  border: 1px solid #e6a7bf;
+  display: block;
+}
+.lukyanova .caption a {
+  color: #e6a7bf; 
+}
+/* .lukyanova .caption a:hover {
+  color: #c26a8c;
+} 
+/*
+=========================
+   CROSS JESUS & GATINHO
+========================= 
+.crossjesus img {
+  position: absolute;
+  top: 100px;
+  left: 400px;
+  width: 800px;
+  z-index: 5;
+}
+*/
+/*
+
+.gatinho img {
+  position: absolute;
+  top: 70px;
+  left: 480px;
+  width: 200px;
+  z-index: 4;
+}
+*/
+
+/* =========================
+   PUM DE ESQUILO
+========================= */
+/* 
+.pumdeesquilo {
+  position: absolute;
+  top: 700px;
+  left: 80px;
+  z-index: 4;
+}
+
+.pumdeesquilo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: auto;
+}
+
+.pumdeesquilo .caption {
+  position: absolute;
+  top: 50px;
+  left: 70px;
+  width: 200px;
+  text-align: center;
+}
+
+.pumdeesquilo .caption a {
+  color: #000;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.pumdeesquilo .caption a:hover {
+  text-decoration: underline;
+}
+
+*/
+
+.vela img {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  width: 60px;
+  height: auto;
+}
+
+.win98-btn {
+  position: absolute;
+
+  /* posição entre a cruz e a lukyanova */
+  top: 280px;   /* ajusta livremente */
+  left: 85px;  /* ajusta livremente */
+  z-index: 997;
+  font-family: "MS Sans Serif", Arial, sans-serif;
+  font-size: 9px;
+
+  padding: 6px 16px;
+
+  background: #c0c0c0;
+  color: #000;
+
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+
+  cursor: pointer;
+}
+.win98-btn:active {
+  border-top: 2px solid #404040;
+  border-left: 2px solid #404040;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  padding-top: 7px;
+  padding-left: 17px;
+}
+img {
+  transition:
+    transform 0.12s ease,
+    filter 0.12s ease;
+}
+
+img:hover {
+  filter:
+    brightness(1.08)
+    drop-shadow(0 0 10px rgba(230, 167, 191, 0.9))
+    drop-shadow(0 0 20px rgba(230, 167, 191, 0.5));
+  transform: scale(1.03);
+}
+
+img:active {
+  transform: scale(0.94);
+  filter: brightness(0.95);
+}
+
+
+  .stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  /* garante que nada escape visualmente */
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.stage {
+  pointer-events: none;
+}
+
+.stage * {
+  pointer-events: auto;
+}
+
+
+html, body {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+body > * {
+  max-width: 100vw;
+}
+
+.altar-player{
+  position:fixed;
+  bottom:0;      /* colado no rodapé */
+  left:0;        /* canto esquerdo */
+  right:auto;    /* garante que não vá pra direita */
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+
+  background:#fff0f6;      /* rosa pastel */
+  border:2px solid #f7c1d9;
+  border-radius:14px 14px 0 0;
+
+  box-shadow:0 0 10px rgba(255,182,193,0.4);
+  z-index:10000;
+}
+
+.hidden {
+  display: none;
+}
+.altar-player{
+  position:fixed;
+  bottom:0;
+  left:0;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:10px 14px;
+
+  background:rgba(255,240,246,0.6);
+  backdrop-filter:blur(12px);
+
+  border:none;
+  box-shadow:none;
+
+  font-family:monospace;
+  color:#d46a92;
+  z-index:9500;
+}
+
+.altar-player button{
+  background:transparent;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  color:#d46a92;
+  transition:0.2s;
+}
+
+.altar-player button:hover{
+  transform:scale(1.2);
+  opacity:0.7;
+}
+
+.track-wrap{
+  display:flex;
+  flex-direction:column;
+  font-size:12px;
+}
+
+#track-title{
+  white-space:nowrap;
+  overflow:hidden;
+  display:block;
+  width:160px;
+  animation:scrollText 8s linear infinite;
+}
+
+@keyframes scrollText{
+  0%{ transform:translateX(0);}
+  100%{ transform:translateX(-50%);}
+}
+
+/* aquario base — posição definida no HTML */
+#aquario{
+  width:220px;
+  height:140px;
+  z-index:99;
+  background:linear-gradient(#cfffff,#9ee6ff);
+  box-shadow:0 0 15px rgba(255,182,193,0.4);
+}
+
+/* 📱 AQUÁRIO ABAIXO DO DUENDE NO MOBILE */
+@media (max-width: 768px) {
+
+  #aquario {
+    position: relative;   /* sai do fixed */
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+
+    margin-top: 420px;     /* espaço abaixo do duende */
+    margin-left: auto;    /* empurra pra direita */
+    margin-right: 10px;
+
+    transform: scale(0.9); /* opcional */
+  }
+
+}
+
+#bloom-flower {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  width: 120px;
+  pointer-events: none;
+  z-index: 100;
+
+  mix-blend-mode: screen;
+}
+
+
+@keyframes bloomGlow {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  50%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1);   opacity: 0.8; }
+}
+
