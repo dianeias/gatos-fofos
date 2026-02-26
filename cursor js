@@ -1,0 +1,46 @@
+const trailImage = "/images/cursor cross.png";
+
+let lastMouseTime = 0;
+const trailInterval = 50; // milissegundos entre trail (ajuste para menos repetição)
+
+document.addEventListener("mousemove", e => {
+  const now = Date.now();
+  if (now - lastMouseTime < trailInterval) return; // limita a frequência
+  lastMouseTime = now;
+
+  // cria a imagem do trail
+  const img = document.createElement("img");
+  img.src = trailImage;
+
+  img.style.position = "absolute";
+  img.style.left = e.pageX + "px";
+  img.style.top = e.pageY + "px";
+  img.style.width = "22px";
+  img.style.pointerEvents = "none";
+  img.style.opacity = "0.9";
+  img.style.zIndex = "9999";
+  img.style.transform = "translate(-50%, -50%)";
+
+  document.body.appendChild(img);
+
+  // animação para flutuar para cima
+  const randomX = (Math.random() - 0.5) * 50; // variação horizontal
+  const randomDuration = 1500 + Math.random() * 500; // duração aleatória
+
+  img.animate(
+    [
+      { transform: `translate(-50%, -50%)`, opacity: 0.9 },
+      { transform: `translate(calc(-50% + ${randomX}px), -150%)`, opacity: 0 }
+    ],
+    {
+      duration: randomDuration,
+      easing: "ease-out",
+      fill: "forwards"
+    }
+  );
+
+  // remove do DOM depois da animação
+  setTimeout(() => {
+    img.remove();
+  }, randomDuration);
+});
