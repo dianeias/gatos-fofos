@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>collector</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<div class="objects">
+  <img src="/images/scissors.png" class="obj" data-name="tesoura" style="width:80px;">
+  <img src="/images/mushroom.png" class="obj" data-name="cogumelo" style="width:30px;">
+  <img src="/images/candle.png" class="obj" data-name="vela" style="width:80px;">
+  <img src="/images/sword.png" class="obj" data-name="espada">
+  <img src="/images/anjinho.png" class="obj" data-name="cruz com anjinho" style="width:50px;">
+  <img src="/images/pumdeesquilo.png" class="obj" data-name="spray pum de esquilo" style="width:70px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/cd%20vengaboys.png" class="obj" data-name="cd vengaboys" style="width:90px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/poltrona%20em%20formato%20de%20tomate.png" class="obj" data-name="poltrona em formato de tomate" style="width:100px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/porta%20treco.png" class="obj" data-name="porta treco">
+  <img src="https://file.garden/aURHkyTTlizpVnca/lagarta%20de%20porcelana.png" class="obj" data-name="lagarta de porcelana" style="width:30px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/diario.png" class="obj" data-name="diário" style="width:70px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/mochi.png" class="obj" data-name="mochi" style="width:90px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/agulheiro.png" class="obj" data-name="agulheiro" style="width:70px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/bot%C3%A3o.png" class="obj" data-name="botão">
+  <img src="https://file.garden/aURHkyTTlizpVnca/ursinho.png" class="obj" data-name="ursinho" style="width:40px;">
+  <img src="https://file.garden/aURHkyTTlizpVnca/espelho.png" class="obj" data-name="espelho">
+  <img src="https://file.garden/aURHkyTTlizpVnca/vivienne%20westwood.png" class="obj" data-name="vivienne westwood">
+  <img src="https://file.garden/aURHkyTTlizpVnca/cam.png" class="obj" data-name="câmera">
+  <img src="https://file.garden/aURHkyTTlizpVnca/cantil.png" class="obj" data-name="cantil">
+  <img src="https://file.garden/aURHkyTTlizpVnca/adaga.png" class="obj" data-name="adaga">
+  <img src="https://file.garden/aURHkyTTlizpVnca/mist%C3%A9rio.png" class="obj" data-name="mistério">
+  <img src="https://file.garden/aURHkyTTlizpVnca/dentes.png" class="obj" data-name="dentes">
+  <img src="https://file.garden/aURHkyTTlizpVnca/sangue.png" class="obj" data-name="sangue">
+  <img src="https://file.garden/aURHkyTTlizpVnca/palha%C3%A7o.png" class="obj" data-name="palhaço">
+  <img src="https://file.garden/aURHkyTTlizpVnca/b%C3%ADblia.png" class="obj" data-name="bíblia">
+  <img src="https://file.garden/aURHkyTTlizpVnca/mymelody%20hairpin.png" class="obj" data-name="my melody hairpin">
+  <img src="https://file.garden/aURHkyTTlizpVnca/cavalo%20de%20madeira.png" class="obj" data-name="cavalo de madeira">
+  <img src="https://file.garden/aURHkyTTlizpVnca/rem%C3%A9dio.png" class="obj" data-name="remédio">
+  <img src="https://file.garden/aURHkyTTlizpVnca/maquina%20de%20costura.png" class="obj" data-name="máquina de costura">
+  <img src="https://file.garden/aURHkyTTlizpVnca/gatinho%20de%20opalita.png" class="obj" data-name="gatinho de opalita">
+  <img src="https://file.garden/aURHkyTTlizpVnca/miau.png" class="obj" data-name="miau">
+  <img src="https://file.garden/aURHkyTTlizpVnca/thoth%20(tarot%20de%20crowley).png" class="obj" data-name="tarot de thoth (crowley)">
+  <img src="https://file.garden/aURHkyTTlizpVnca/jodorowsky.png" class="obj" data-name="jodorowsky">
+  
+</div>
+
+<button id="done" disabled>pronto</button>
+<div id="reading" class="reading hidden"></div>
+<p>The tarot will teach you
+how to create a soul.</p>
+
+
+<div id="chosen"></div>
+
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="collector.css">
+
+<script src="collector.js"></script>
+
+  <a href="/">← voltar</a>
+</body>
+</html>
