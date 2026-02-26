@@ -1,0 +1,99 @@
+document.addEventListener("DOMContentLoaded", () => {
+
+const tracks = [
+  {
+    name: "SET PS1COD3LICO",
+    src: "https://file.garden/aURHkyTTlizpVnca/%5BFunk%20Progressivo%5D%20LIL%20GOLE%20-%20SET%20PS1COD3LICO%20NO%20PIQUE%20BAILE%20DA%20COR%C3%89IA%20DO%20NORTE%20%F0%9F%87%B0%F0%9F%87%B5%20%20VANSELVERS%C3%81RIO%20-%20optic'drive%20(youtube).mp3"
+  }
+];
+
+let index = 0;
+
+const altar = document.getElementById("altar-player");
+const audio = document.getElementById("audio");
+const title = document.getElementById("track-title");
+
+const playBtn = document.getElementById("play");
+const nextBtn = document.getElementById("next");
+const prevBtn = document.getElementById("prev");
+
+function loadTrack(i){
+  if(!audio || !title) return;
+
+  audio.src = tracks[i].src;
+  audio.load();
+  title.textContent = tracks[i].name;
+}
+
+loadTrack(index);
+
+if(playBtn){
+  playBtn.onclick = () => {
+
+    if(audio.paused){
+      audio.play().catch(()=>{});
+      playBtn.textContent = "||";
+    }else{
+      audio.pause();
+      playBtn.textContent = "▷";
+    }
+
+  };
+}
+
+if(nextBtn){
+  nextBtn.onclick = () => {
+    index = (index+1)%tracks.length;
+    loadTrack(index);
+    audio.play().catch(()=>{});
+    if(playBtn) playBtn.textContent="||";
+  };
+}
+
+if(prevBtn){
+  prevBtn.onclick = () => {
+    index = (index-1+tracks.length)%tracks.length;
+    loadTrack(index);
+    audio.play().catch(()=>{});
+    if(playBtn) playBtn.textContent="||";
+  };
+}
+
+audio.addEventListener("loadedmetadata", ()=>{
+  const duration = document.getElementById("duration");
+  if(duration){
+    duration.textContent = formatTime(audio.duration);
+  }
+});
+
+audio.addEventListener("timeupdate", ()=>{
+  const current = document.getElementById("current");
+  if(current){
+    current.textContent = formatTime(audio.currentTime);
+  }
+});
+
+function formatTime(sec){
+  if(!sec || isNaN(sec)) return "0:00";
+  let m=Math.floor(sec/60);
+  let s=Math.floor(sec%60).toString().padStart(2,'0');
+  return `${m}:${s}`;
+}
+
+const splash = document.getElementById("splash");
+
+if(splash){
+  splash.addEventListener("click", ()=>{
+    splash.style.display="none";
+
+    if(altar) altar.classList.remove("hidden");
+
+    audio.play().catch(()=>{
+      console.log("autoplay bloqueado até clicar play");
+    });
+
+    if(playBtn) playBtn.textContent="||";
+  });
+}
+
+});
