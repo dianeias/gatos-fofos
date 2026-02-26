@@ -1,0 +1,315 @@
+window.addEventListener("load", () => {
+
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+
+canvas.style.position = "absolute";
+canvas.style.right = "20px";
+canvas.style.top = "300px";
+canvas.style.width = "240px";
+canvas.style.height = "160px";
+canvas.style.zIndex = "9999";
+canvas.style.border = "2px solid #f7c1d9";
+canvas.style.borderRadius = "12px";
+canvas.style.boxShadow = "0 0 25px rgba(255,182,193,0.5)";
+canvas.style.background = "linear-gradient(#ffe6f2,#ffd6ec,#ffcce6)";
+canvas.style.touchAction = "none"; // IMPORTANTE p/ mobile
+
+canvas.width = 240;
+canvas.height = 160;
+
+const ctx = canvas.getContext("2d");
+
+const colors = ["#ff8fb1","#ffa6c9","#ffb3d9","#ffcce6"];
+
+const fishes = [];
+for (let i = 0; i < 7; i++) {
+  fishes.push({
+    x: Math.random() * 200,
+    y: Math.random() * 120,
+    dir: Math.random() < 0.5 ? 1 : -1,
+    speed: 0.3 + Math.random() * 0.4,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    float: Math.random() * 100
+  });
+}
+
+let draggingFish = null;
+
+/* ======================
+   PEGAR POSIÇÃO DO TOQUE/MOUSE
+====================== */
+function getPos(evt) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+  const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+
+  return {
+    x: clientX - rect.left,
+    y: clientY - rect.top
+  };
+}
+
+/* ======================
+   INICIAR DRAG
+====================== */
+function startDrag(evt) {
+  const pos = getPos(evt);
+
+  fishes.forEach(f => {
+    if (Math.abs(pos.x - f.x) < 20 && Math.abs(pos.y - f.y) < 12) {
+      draggingFish = f;
+    }
+  });
+}
+
+/* ======================
+   MOVER DRAG
+====================== */
+function moveDrag(evt) {
+  if (!draggingFish) return;
+  evt.preventDefault();
+
+  const pos = getPos(evt);
+  draggingFish.x = pos.x;
+  draggingFish.y = pos.y;
+}
+
+/* ======================
+   SOLTAR
+====================== */
+function endDrag() {
+  draggingFish = null;
+}
+
+/* PC */
+canvas.addEventListener("mousedown", startDrag);
+window.addEventListener("mousemove", moveDrag);
+window.addEventListener("mouseup", endDrag);
+
+/* MOBILE */
+canvas.addEventListener("touchstart", startDrag);
+window.addEventListener("touchmove", moveDrag, { passive: false });
+window.addEventListener("touchend", endDrag);
+
+function drawSand() {
+  ctx.fillStyle = "#ffe4c9";
+  ctx.fillRect(0, 140, 240, 20);
+}
+
+function drawAlgae() {
+  ctx.fillStyle = "rgba(255,105,180,0.5)";
+  for (let i = 0; i < 7; i++) {
+    let h = 20 + Math.sin(Date.now() * 0.002 + i) * 5;
+    ctx.fillRect(i * 35 + 10, 140 - h, 4, h);
+  }
+}
+
+function drawFish(f) {
+  ctx.fillStyle = f.color;
+  ctx.fillRect(f.x, f.y, 10, 5);
+
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(f.x + (f.dir > 0 ? 6 : 2), f.y + 1, 2, 2);
+
+  ctx.beginPath();
+  if (f.dir > 0) {
+    ctx.moveTo(f.x, f.y + 2.5);
+    ctx.lineTo(f.x - 6, f.y);
+    ctx.lineTo(f.x - 6, f.y + 5);
+  } else {
+    ctx.moveTo(f.x + 10, f.y + 2.5);
+    ctx.lineTo(f.x + 16, f.y);
+    ctx.lineTo(f.x + 16, f.y + 5);
+  }
+  ctx.fill();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, 240, 160);
+
+  drawSand();
+  drawAlgae();
+
+  fishes.forEach(f => {window.addEventListener("load", () => {
+
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+
+canvas.style.position = "absolute";
+canvas.style.right = "20px";
+canvas.style.top = "300px";
+canvas.style.width = "240px";
+canvas.style.height = "160px";
+canvas.style.zIndex = "9999";
+canvas.style.border = "2px solid #f7c1d9";
+canvas.style.borderRadius = "12px";
+canvas.style.boxShadow = "0 0 25px rgba(255,182,193,0.5)";
+canvas.style.background = "linear-gradient(#ffe6f2,#ffd6ec,#ffcce6)";
+canvas.style.touchAction = "none";
+
+canvas.width = 240;
+canvas.height = 160;
+
+const ctx = canvas.getContext("2d");
+
+const colors = ["#ff8fb1","#ffa6c9","#ffb3d9","#ffcce6"];
+
+const fishes = [];
+for (let i = 0; i < 7; i++) {
+  fishes.push({
+    x: Math.random() * 200,
+    y: Math.random() * 120,
+    dir: Math.random() < 0.5 ? 1 : -1,
+    speed: 0.3 + Math.random() * 0.4,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    float: Math.random() * 100
+  });
+}
+
+let draggingFish = null;
+
+/* ======================
+   PEGAR POSIÇÃO
+====================== */
+function getPos(evt) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+  const clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
+
+  return {
+    x: clientX - rect.left,
+    y: clientY - rect.top
+  };
+}
+
+/* ======================
+   START DRAG
+====================== */
+function startDrag(evt) {
+  const pos = getPos(evt);
+
+  fishes.forEach(f => {
+    if (Math.abs(pos.x - f.x) < 20 && Math.abs(pos.y - f.y) < 12) {
+      draggingFish = f;
+    }
+  });
+}
+
+/* ======================
+   MOVE DRAG
+====================== */
+function moveDrag(evt) {
+  if (!draggingFish) return;
+
+  const pos = getPos(evt);
+  draggingFish.x = pos.x;
+  draggingFish.y = pos.y;
+}
+
+/* ======================
+   END DRAG
+====================== */
+function endDrag() {
+  draggingFish = null;
+}
+
+/* PC */
+canvas.addEventListener("mousedown", startDrag);
+window.addEventListener("mousemove", moveDrag);
+window.addEventListener("mouseup", endDrag);
+
+/* MOBILE — CORRIGIDO */
+canvas.addEventListener("touchstart", e => {
+  e.preventDefault();
+  startDrag(e);
+}, { passive: false });
+
+window.addEventListener("touchmove", e => {
+  if (!draggingFish) return;
+  e.preventDefault();
+  moveDrag(e);
+}, { passive: false });
+
+window.addEventListener("touchend", endDrag);
+
+/* ======================
+   DESENHO
+====================== */
+function drawSand() {
+  ctx.fillStyle = "#ffe4c9";
+  ctx.fillRect(0, 140, 240, 20);
+}
+
+function drawAlgae() {
+  ctx.fillStyle = "rgba(255,105,180,0.5)";
+  for (let i = 0; i < 7; i++) {
+    let h = 20 + Math.sin(Date.now() * 0.002 + i) * 5;
+    ctx.fillRect(i * 35 + 10, 140 - h, 4, h);
+  }
+}
+
+function drawFish(f) {
+  ctx.fillStyle = f.color;
+  ctx.fillRect(f.x, f.y, 10, 5);
+
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(f.x + (f.dir > 0 ? 6 : 2), f.y + 1, 2, 2);
+
+  ctx.beginPath();
+  if (f.dir > 0) {
+    ctx.moveTo(f.x, f.y + 2.5);
+    ctx.lineTo(f.x - 6, f.y);
+    ctx.lineTo(f.x - 6, f.y + 5);
+  } else {
+    ctx.moveTo(f.x + 10, f.y + 2.5);
+    ctx.lineTo(f.x + 16, f.y);
+    ctx.lineTo(f.x + 16, f.y + 5);
+  }
+  ctx.fill();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, 240, 160);
+
+  drawSand();
+  drawAlgae();
+
+  fishes.forEach(f => {
+    if (f !== draggingFish) {
+      f.float += 0.05;
+      f.y += Math.sin(f.float) * 0.15;
+      f.x += f.speed * f.dir;
+
+      if (f.x < -20) f.x = 240;
+      if (f.x > 260) f.x = -20;
+    }
+
+    drawFish(f);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+});
+
+    if (f !== draggingFish) {
+      f.float += 0.05;
+      f.y += Math.sin(f.float) * 0.15;
+      f.x += f.speed * f.dir;
+
+      if (f.x < -20) f.x = 240;
+      if (f.x > 260) f.x = -20;
+    }
+
+    drawFish(f);
+  });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+});
