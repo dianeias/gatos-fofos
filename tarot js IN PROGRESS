@@ -1,0 +1,140 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+  const objects = document.querySelectorAll('.obj');
+  const container = document.querySelector('.objects');
+
+  let chosen = [];
+
+  const chosenDiv = document.getElementById('chosen');
+  const doneBtn = document.getElementById('done');
+  const readingDiv = document.getElementById('reading');
+
+  // ===== SIGNIFICADOS =====
+  const significados = {
+    "agulheiro": {
+      consciente: [
+        "atenção obsessiva aos detalhes",
+        "necessidade de controle",
+        "proteção silenciosa"
+      ],
+      inconsciente: [
+        "medo de errar",
+        "tensão constante",
+        "autocrítica excessiva"
+      ]
+    },
+
+    "ursinho": {
+      consciente: [
+        "busca por conforto",
+        "afeto explícito",
+        "nostalgia"
+      ],
+      inconsciente: [
+        "regressão emocional",
+        "dependência",
+        "desejo de ser cuidado"
+      ]
+    },
+
+    "espelho": {
+      consciente: [
+        "auto-observação",
+        "curiosidade sobre si",
+        "construção de identidade"
+      ],
+      inconsciente: [
+        "medo de ser visto",
+        "fragmentação",
+        "comparação constante"
+      ]
+    }
+  };
+
+  // ===== TAROT ESPALHADO =====
+  const circleRadius = 220;
+  const maxRotation = 35;
+
+function scatterObjects() {
+  const rect = container.getBoundingClientRect();
+
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+
+  const radius = Math.min(rect.width, rect.height) * 0.35;
+
+  objects.forEach(obj => {
+
+    const angle = Math.random() * Math.PI * 2;
+    const r = Math.sqrt(Math.random()) * radius;
+
+    const x = centerX + Math.cos(angle) * r;
+    const y = centerY + Math.sin(angle) * r;
+
+    const rot = (Math.random() * maxRotation * 2) - maxRotation;
+
+    obj.style.position = "absolute";
+    obj.style.left = x + "px";
+    obj.style.top = y + "px";
+    obj.style.transform = `translate(-50%, -50%) rotate(${rot}deg)`;
+
+    obj.style.zIndex = Math.floor(Math.random() * 20) + 1;
+  });
+}
+
+  // ===== SELEÇÃO =====
+  objects.forEach(obj => {
+    obj.addEventListener('click', () => {
+      const name = obj.dataset.name;
+
+      // deselecionar
+      if (chosen.includes(name)) {
+        chosen = chosen.filter(item => item !== name);
+        obj.classList.remove('selected');
+        updateUI();
+        return;
+      }
+
+      // limite 4
+      if (chosen.length >= 4) return;
+
+      chosen.push(name);
+      obj.classList.add('selected');
+      updateUI();
+    });
+  });
+
+  function updateUI() {
+    chosenDiv.innerHTML = chosen.join(', ');
+    doneBtn.disabled = chosen.length !== 4;
+  }
+
+  function pick(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  // ===== LEITURA =====
+  doneBtn.addEventListener('click', () => {
+
+    readingDiv.classList.remove('hidden');
+    readingDiv.innerHTML = '';
+
+    chosen.forEach(name => {
+      const sig = significados[name];
+      if (!sig) return;
+
+      const c = pick(sig.consciente);
+      const i = pick(sig.inconsciente);
+
+      readingDiv.innerHTML += `
+        <p>
+          <strong>${name}</strong><br>
+          No consciente: ${c}.<br>
+          No inconsciente: ${i}.
+        </p>
+      `;
+    });
+
+  });
+
+});
