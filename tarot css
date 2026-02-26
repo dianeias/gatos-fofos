@@ -1,0 +1,20 @@
+.objects {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  margin-top: 40px;
+  overflow: visible;
+}
+
+.obj {
+  position: absolute;
+  width: 60px; /* tamanho pequeno dos objetos */
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.obj.selected {
+  filter: drop-shadow(0 0 15px rgba(230,167,191,0.9));
+  transform: scale(1.05);
+}
